@@ -1,11 +1,10 @@
 {
-    "name": "Unoriginal jokes",
-    "version": "1.0.0",
-    "description": "This is an extension for Sarsardi",
+    "name": "Random Poem Extension",
+    "version": "1.0",
     "manifest_version": 3,
-    "author": "Tiffany J",
+    "description": "Displays a random poem",
     "action": {
-        "default_popup": "index.html",
-        "default_title": "Upcoming Toronto Concerts"
-    }
-}
+      "default_popup": "index.html"
+    },
+    "permissions": ["activeTab"]
+  }

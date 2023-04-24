@@ -1,18 +1,20 @@
-const jokeButton = document.getElementById('joke-button');
-const modalContainer = document.getElementById('modal-container');
-const jokeText = document.getElementById('joke-text');
-// const closeButton = document.getElementById('close');
+const poemContainer = document.getElementById('poem');
+const generateButton = document.getElementById('generate');
 
-jokeButton.addEventListener('click', () => {
-  fetch('https://api.icndb.com/jokes/random')
-    .then(response => response.json())
-    .then(data => {
-      const joke = data.value.joke;
-      jokeText.innerHTML = joke;
-      modalContainer.style.display = 'block';
-    });
-});
+async function generatePoem() {
+  try {
+    const response = await fetch('https://poetrydb.org/title/Ozymandias/lines.json');
+    const data = await response.json();
+    const poem = data[0];
+    poemContainer.innerHTML = `
+      <h2>${poem.title}</h2>
+      <p>${poem.lines.join("<br>")}</p>
+      <p>By ${poem.author}</p>
+    `;
+  } catch (error) {
+    console.error(error);
+    poemContainer.innerHTML = '<p>Failed to generate poem.</p>';
+  }
+}
 
-closeButton.addEventListener('click', () => {
-  modalContainer.style.display = 'none';
-});
+generateButton.addEventListener('click', generatePoem);
